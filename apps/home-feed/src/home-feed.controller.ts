@@ -1,12 +1,12 @@
 import { Controller, Get } from '@nestjs/common';
 import { HomeFeedService } from './home-feed.service';
 
-@Controller()
+@Controller('home-feed')
 export class HomeFeedController {
   constructor(private readonly homeFeedService: HomeFeedService) {}
 
   @Get()
-  getHello(): string {
+  getHomeFeed(): string {
     return this.homeFeedService.getHello();
   }
 }
