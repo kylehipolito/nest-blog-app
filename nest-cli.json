@@ -63,6 +63,15 @@
       "compilerOptions": {
         "tsConfigPath": "apps/blog-writer/tsconfig.app.json"
       }
+    },
+    "follow": {
+      "type": "application",
+      "root": "apps/follow",
+      "entryFile": "main",
+      "sourceRoot": "apps/follow/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/follow/tsconfig.app.json"
+      }
     }
   }
 }
