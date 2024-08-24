@@ -48,3 +48,15 @@ services:
       - 7778:9229
     env_file:
       - $PWD/apps/follow/.env
+
+  database:
+    image: postgres:alpine
+    restart: always
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=kyle
+      - POSTGRES_DB=nest-blog
+    # tmpfs:
+    #   - /var/lib/postgresql/data:rw
