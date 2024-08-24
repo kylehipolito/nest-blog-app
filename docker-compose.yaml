@@ -12,3 +12,15 @@ services:
       - 7775:9229
     env_file:
       - $PWD/apps/auth/.env
+
+  home-feed:
+    build:
+      context: .
+      dockerfile: $PWD/apps/home-feed/dev.Dockerfile
+    volumes:
+      - .:/app
+    ports:
+      - 3001:3001
+      - 7776:9229
+    env_file:
+      - $PWD/apps/home-feed/.env

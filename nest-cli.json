@@ -45,6 +45,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/common/tsconfig.lib.json"
       }
+    },
+    "home-feed": {
+      "type": "application",
+      "root": "apps/home-feed",
+      "entryFile": "main",
+      "sourceRoot": "apps/home-feed/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/home-feed/tsconfig.app.json"
+      }
     }
   }
 }
