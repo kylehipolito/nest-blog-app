@@ -24,3 +24,15 @@ services:
       - 7776:9229
     env_file:
       - $PWD/apps/home-feed/.env
+
+  blog-writer:
+    build:
+      context: .
+      dockerfile: $PWD/apps/blog-writer/dev.Dockerfile
+    volumes:
+      - .:/app
+    ports:
+      - 3002:3002
+      - 7777:9229
+    env_file:
+      - $PWD/apps/blog-writer/.env

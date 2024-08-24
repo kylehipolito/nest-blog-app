@@ -54,6 +54,15 @@
       "compilerOptions": {
         "tsConfigPath": "apps/home-feed/tsconfig.app.json"
       }
+    },
+    "blog-writer": {
+      "type": "application",
+      "root": "apps/blog-writer",
+      "entryFile": "main",
+      "sourceRoot": "apps/blog-writer/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/blog-writer/tsconfig.app.json"
+      }
     }
   }
 }
