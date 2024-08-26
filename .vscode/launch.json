@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "pwa-node",
+      "request": "attach",
+      "name": "Attach to auth",
+      "cwd": "${workspaceFolder}",
+      "port": 7775,
+      "sourceMaps": true
+    }
+  ]
+}

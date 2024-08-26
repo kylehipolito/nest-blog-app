@@ -11,6 +11,7 @@ import * as joi from 'joi';
       isGlobal: true,
       validationSchema: joi.object({
         PORT: joi.string().required(),
+        DATABASE_URL: joi.string().required(),
       }),
     }),
     UsersModule,
