@@ -1,6 +1,6 @@
 import { IsUUID } from 'class-validator';
 
-export class CreateFollowDto {
+export class FollowDto {
   @IsUUID()
   follower: string;
 
