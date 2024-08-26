@@ -22,6 +22,8 @@ export class FollowController {
     return this.followService.findFollowers(userId);
   }
 
-  @Get('/followees')
-  async getFollowees() {}
+  @Get('/following')
+  async getFollowing(@Query('userId') userId: string) {
+    return this.followService.findFollowing(userId);
+  }
 }

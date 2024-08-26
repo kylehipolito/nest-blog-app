@@ -27,4 +27,13 @@ export class FollowService {
       },
     });
   }
+
+  async findFollowing(userId: string) {
+    return this.prisma.follow.findMany({
+      where: { followerId: userId },
+      include: {
+        followee: true,
+      },
+    });
+  }
 }
