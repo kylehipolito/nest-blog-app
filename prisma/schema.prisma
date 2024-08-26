@@ -19,11 +19,15 @@ model User {
  id String @id @db.Uuid @default(dbgenerated("gen_random_uuid()"))
  username String @unique
  password String
+ followers Follow[] @relation("UserFollows")
+ followees Follow[] @relation("UserFollowedBy")
 }
 
 model Follow {
- follower String @db.Uuid
- followee String @db.Uuid
+ follower User @relation("UserFollows", fields: [followerId], references: [id])
+ followerId String @db.Uuid
+ followee User @relation("UserFollowedBy", fields: [followeeId], references: [id])
+ followeeId String @db.Uuid
 
- @@unique([follower, followee])
+ @@unique([followerId, followeeId])
 }

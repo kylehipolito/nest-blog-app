@@ -2,8 +2,8 @@ import { IsUUID } from 'class-validator';
 
 export class UnfollowDto {
   @IsUUID()
-  follower: string;
+  followerId: string;
 
   @IsUUID()
-  followee: string;
+  followeeId: string;
 }

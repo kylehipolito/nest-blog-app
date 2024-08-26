@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { FollowService } from './follow.service';
 import { FollowDto } from './dto/follow.dto';
 import { UnfollowDto } from './dto/unfollow-dto';
@@ -18,7 +18,9 @@ export class FollowController {
   }
 
   @Get('/followers')
-  async getFollowers() {}
+  async getFollowers(@Query('userId') userId: string) {
+    return this.followService.findFollowers(userId);
+  }
 
   @Get('/followees')
   async getFollowees() {}

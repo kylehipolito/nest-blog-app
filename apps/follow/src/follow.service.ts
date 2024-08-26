@@ -14,12 +14,17 @@ export class FollowService {
   async unfollow(unfollowDto: UnfollowDto) {
     return this.prisma.follow.delete({
       where: {
-        follower_followee: unfollowDto,
+        followerId_followeeId: unfollowDto,
       },
     });
   }
 
-  getHello(): string {
-    return 'Hello World!';
+  async findFollowers(userId: string) {
+    return this.prisma.follow.findMany({
+      where: { followeeId: userId },
+      include: {
+        follower: true,
+      },
+    });
   }
 }
