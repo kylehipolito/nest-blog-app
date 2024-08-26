@@ -20,3 +20,10 @@ model User {
  username String @unique
  password String
 }
+
+model Follow {
+ follower String @db.Uuid
+ followee String @db.Uuid
+
+ @@unique([follower, followee])
+}
