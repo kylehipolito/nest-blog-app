@@ -24,6 +24,14 @@
       "cwd": "${workspaceFolder}",
       "port": 7777,
       "sourceMaps": true
+    },
+    {
+      "type": "pwa-node",
+      "request": "attach",
+      "name": "Attach to follow",
+      "cwd": "${workspaceFolder}",
+      "port": 7778,
+      "sourceMaps": true
     }
   ]
 }

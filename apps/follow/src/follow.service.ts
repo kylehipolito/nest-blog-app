@@ -23,7 +23,9 @@ export class FollowService {
     return this.prisma.follow.findMany({
       where: { followeeId: userId },
       include: {
-        follower: true,
+        follower: {
+          select: { id: true, username: true },
+        },
       },
     });
   }
@@ -32,7 +34,9 @@ export class FollowService {
     return this.prisma.follow.findMany({
       where: { followerId: userId },
       include: {
-        followee: true,
+        follower: {
+          select: { id: true, username: true },
+        },
       },
     });
   }
