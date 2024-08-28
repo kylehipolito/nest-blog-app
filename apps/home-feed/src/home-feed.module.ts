@@ -3,6 +3,7 @@ import { HomeFeedController } from './home-feed.controller';
 import { HomeFeedService } from './home-feed.service';
 import { ConfigModule } from '@nestjs/config';
 import { LoggerModule } from '@app/common/logger';
+import { PrismaService } from '@app/common/database';
 
 import * as joi from 'joi';
 
@@ -17,6 +18,6 @@ import * as joi from 'joi';
     }),
   ],
   controllers: [HomeFeedController],
-  providers: [HomeFeedService],
+  providers: [HomeFeedService, PrismaService],
 })
 export class HomeFeedModule {}
