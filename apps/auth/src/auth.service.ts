@@ -1,4 +1,5 @@
 import { PrismaService } from '@app/common/database';
+import { User } from '@app/common/entities';
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
@@ -12,15 +13,26 @@ export class AuthService {
   async verifyUser(username: string, password: string) {
     return this.prisma.user.findFirst({
       where: { username, password },
-      select: { username: true },
+      select: { id: true, username: true },
     });
   }
 
-  async login(username: string) {
-    const payload = { username };
+  async login(user: User) {
+    const payload = user;
 
     const accessToken = this.jwtService.sign(payload);
 
     return { accessToken };
+  }
+
+  async verifyToken(bearerToken: string) {
+    try {
+      const token = bearerToken.split(' ')[1];
+
+      return this.jwtService.verify(token);
+    } catch (err: any) {
+      console.log(err);
+      return null;
+    }
   }
 }

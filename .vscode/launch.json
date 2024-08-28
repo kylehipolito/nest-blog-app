@@ -8,6 +8,14 @@
       "cwd": "${workspaceFolder}",
       "port": 7775,
       "sourceMaps": true
+    },
+    {
+      "type": "pwa-node",
+      "request": "attach",
+      "name": "Attach to home feed",
+      "cwd": "${workspaceFolder}",
+      "port": 7776,
+      "sourceMaps": true
     }
   ]
 }

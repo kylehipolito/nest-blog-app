@@ -3,6 +3,7 @@ import { AuthService } from './auth.service';
 import { UsersService } from './users/users.service';
 import { CreateUserDto } from './users/dto/create-user.dto';
 import { LocalAuthGuard } from './guards/local-auth.guard';
+import { MessagePattern, Payload } from '@nestjs/microservices';
 
 @Controller('auth')
 export class AuthController {
@@ -20,5 +21,10 @@ export class AuthController {
   @Post('login')
   async login(@Request() req: any) {
     return this.authService.login(req.user);
+  }
+
+  @MessagePattern('authenticate')
+  async authenticate(@Payload() token: string) {
+    return this.authService.verifyToken(token);
   }
 }
