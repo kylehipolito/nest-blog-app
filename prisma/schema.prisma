@@ -21,6 +21,7 @@ model User {
  password String
  followers Follow[] @relation("UserFollows")
  followees Follow[] @relation("UserFollowedBy")
+ blogs Blog[]
 }
 
 model Follow {
@@ -30,4 +31,13 @@ model Follow {
  followeeId String @db.Uuid
 
  @@unique([followerId, followeeId])
+}
+
+model Blog {
+ id String @id @db.Uuid @default(dbgenerated("gen_random_uuid()"))
+ authorId String @db.Uuid
+ author User @relation(fields: [authorId], references: [id])
+ title String
+ body String
+ tags String[]
 }
