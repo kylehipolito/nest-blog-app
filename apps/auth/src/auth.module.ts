@@ -7,6 +7,7 @@ import { LoggerModule } from '@app/common/logger';
 import { JwtModule } from '@nestjs/jwt';
 import { PrismaService } from '@app/common/database';
 import { LocalStrategy } from './strategies/local.strategy';
+import { JwtStrategy } from './strategies/jwt.strategy';
 
 import * as joi from 'joi';
 
@@ -34,6 +35,6 @@ import * as joi from 'joi';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, PrismaService, LocalStrategy],
+  providers: [AuthService, PrismaService, LocalStrategy, JwtStrategy],
 })
 export class AuthModule {}
