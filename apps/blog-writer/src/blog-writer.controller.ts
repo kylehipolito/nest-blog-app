@@ -1,15 +1,33 @@
-import { Controller, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UseGuards,
+} from '@nestjs/common';
 import { BlogWriterService } from './blog-writer.service';
 import { CreateBlogDto } from './dto/create-blog.dto';
 import { UpdateBlogDto } from './dto/update-blog.dto';
+import { JwtAuthGuard } from '@app/common/guards';
+import { CurrentUser } from '@app/common/decorators';
+import { User } from '@app/common/entities';
 
+@UseGuards(JwtAuthGuard)
 @Controller('blog-writer')
 export class BlogWriterController {
   constructor(private readonly blogWriterService: BlogWriterService) {}
 
   @Post()
-  create(@Body() createBlogDto: CreateBlogDto) {
-    return this.blogWriterService.create(createBlogDto);
+  create(
+    @Body() createBlogDto: Omit<CreateBlogDto, 'authorId'>,
+    @CurrentUser() user: User,
+  ) {
+    return this.blogWriterService.create({
+      ...createBlogDto,
+      authorId: user.id,
+    });
   }
 
   @Patch(':id')

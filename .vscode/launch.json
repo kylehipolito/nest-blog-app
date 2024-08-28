@@ -16,6 +16,14 @@
       "cwd": "${workspaceFolder}",
       "port": 7776,
       "sourceMaps": true
+    },
+    {
+      "type": "pwa-node",
+      "request": "attach",
+      "name": "Attach to blog writer",
+      "cwd": "${workspaceFolder}",
+      "port": 7777,
+      "sourceMaps": true
     }
   ]
 }
