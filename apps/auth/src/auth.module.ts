@@ -1,9 +1,12 @@
 import { Module } from '@nestjs/common';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
 import { LoggerModule } from '@app/common/logger';
+import { JwtModule } from '@nestjs/jwt';
+import { PrismaService } from '@app/common/database';
+import { LocalStrategy } from './strategies/local.strategy';
 
 import * as joi from 'joi';
 
@@ -15,11 +18,22 @@ import * as joi from 'joi';
       validationSchema: joi.object({
         PORT: joi.string().required(),
         DATABASE_URL: joi.string().required(),
+        JWT_SECRET: joi.string().required(),
+        JWT_EXPIRATION: joi.string().required(),
       }),
     }),
     UsersModule,
+    JwtModule.registerAsync({
+      useFactory: (configService: ConfigService) => ({
+        secret: configService.get<string>('JWT_SECRET'),
+        signOptions: {
+          expiresIn: `${configService.get('JWT_EXPIRATION')}s`,
+        },
+      }),
+      inject: [ConfigService],
+    }),
   ],
   controllers: [AuthController],
-  providers: [AuthService],
+  providers: [AuthService, PrismaService, LocalStrategy],
 })
 export class AuthModule {}
